@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Bem-vindo{% endblock %}
+{% block content %}
+    <h1>Bem-vindo(a), {{ nome }}! </h1>
+    <p>Você entrou com sucesso no sistema de gerenciamento de pontos turísticos, restaurantes e museus.</p>
+    <p><em>(Em breve aqui teremos a listagem dos locais visitados e ferramentas de avaliação!)</em></p>
+    <br>
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Sair / Logout</a>
+    <a href="{{ url_for('main.mandar')  }}" class="btn btn-danger"> Listar</a>
+{% endblock %}
