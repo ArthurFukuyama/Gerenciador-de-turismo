@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Novo Lugar - Guia Turístico{% endblock %}
+
+{% block content %}
+    <h2>Cadastrar Novo Ponto Turístico</h2>
+
+    {% if erro %}
+        <p class="error">{{ erro }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <p>
+            <label>Cidade / Local:</label><br>
+            <input type="text" name="lugar" required placeholder="Ex: Rio de Janeiro" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </p>
+        <p>
+            <label>Monumento / Ponto de Interesse:</label><br>
+            <input type="text" name="monumento" required placeholder="Ex: Cristo Redentor" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </p>
+        <button type="submit" class="btn">Salvar Lugar</button>
+        <a href="{{ url_for('main.ListaLugares') }}" style="margin-left: 10px;">Cancelar</a>
+    </form>
+{% endblock %}

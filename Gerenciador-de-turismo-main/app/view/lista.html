@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Meus Locais Turísticos{% endblock %}
+
+{% block content %}
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Meus Pontos Turísticos</h2>
+        <a href="{{ url_for('main.cadastrar_lugar') }}" class="btn">+ Novo Lugar</a>
+    </div>
+
+    {% if lugares %}
+        <div style="margin-top: 20px;">
+            {% for lugar in lugares %}
+                <div style="background-color: #f8fafc; border: 1px solid var(--borda); border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                    <h3 style="margin-top: 0; color: #1e3a8a; border-bottom: none; padding-bottom: 0;">
+                        📍 {{ lugar.lugar }}
+                    </h3>
+                    <p style="margin: 5px 0 0 0; font-size: 16px;">
+                        <b>Monumento / Ponto:</b> {{ lugar.monumento }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="color: #666; margin-top: 20px;">Você ainda não cadastrou nenhum lugar.</p>
+    {% endif %}
+
+    <div style="margin-top: 25px;">
+        <a href="{{ url_for('main.welcome') }}" class="btn">Voltar para o Início</a>
+    </div>
+{% endblock %}
