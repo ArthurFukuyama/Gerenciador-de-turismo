@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+    <h2>🏷️ Categorias de Lugares</h2>
+
+    <form method="POST" style="margin-bottom: 30px;">
+        <label>Nova Categoria:</label>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" name="nome" placeholder="Ex: Praias, Museus" required style="margin-bottom: 0;">
+            <button type="submit" class="btn">Adicionar</button>
+        </div>
+    </form>
+
+    <hr style="border-color: var(--border);">
+
+    <h3>Categorias Registadas</h3>
+    {% if categorias %}
+        <ul style="list-style: none; padding: 0;">
+            {% for cat in categorias %}
+                <li style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
+                    <span><b>{{ cat.nome }}</b></span>
+                    <form action="{{ url_for('main.excluir_categoria', id=cat.id) }}" method="POST" onsubmit="return confirm('Deseja excluir esta categoria?');">
+                        <button type="submit" class="btn btn-danger" style="padding: 4px 10px; font-size: 12px;">Excluir</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma categoria cadastrada.</p>
+    {% endif %}
+{% endblock %}

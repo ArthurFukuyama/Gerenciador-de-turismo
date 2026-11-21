@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Início - Guia Turístico{% endblock %}
+
+{% block content %}
+    <h2>👋 Bem-vindo, {{ g.usuario.nome }}!</h2>
+    <p>Organize seus roteiros, registre monumentos visitados e categorize seus destinos favoritos.</p>
+
+    <div style="display: flex; gap: 15px; margin-top: 25px;">
+        <a href="{{ url_for('main.ListaLugares') }}" class="btn">📍 Ver Meus Lugares</a>
+        <a href="{{ url_for('main.gerenciar_categorias') }}" class="btn">🏷️ Gerenciar Categorias</a>
+    </div>
+{% endblock %}

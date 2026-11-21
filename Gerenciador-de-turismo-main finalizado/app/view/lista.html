@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Meus Lugares{% endblock %}
+
+{% block content %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>📍 Meus Pontos Turísticos</h2>
+        <a href="{{ url_for('main.cadastrar_lugar') }}" class="btn">+ Novo Lugar</a>
+    </div>
+
+    <!-- Formulário de Busca (GET) -->
+    <form method="GET" action="{{ url_for('main.ListaLugares') }}" style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <input type="text" name="busca" value="{{ busca or '' }}" placeholder="Buscar por cidade ou monumento..." style="margin: 0;">
+        <button type="submit" class="btn">Buscar</button>
+        {% if busca %}
+            <a href="{{ url_for('main.ListaLugares') }}" class="btn btn-danger">Limpar</a>
+        {% endif %}
+    </form>
+
+    {% if lugares %}
+        {% for lugar in lugares %}
+            <div style="border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0;">{{ lugar.lugar }}</h3>
+                    <p style="margin: 5px 0;"><b>Monumento:</b> {{ lugar.monumento }}</p>
+                    <p style="margin: 5px 0; font-size: 14px; opacity: 0.8;">
+                        📅 <b>Data da Visita:</b> {{ lugar.data_visita }} 
+                        {% if lugar.categoria_nome %}
+                            | <span class="badge">{{ lugar.categoria_nome }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <a href="{{ url_for('main.editar_lugar', id=lugar.id) }}" class="btn">Editar</a>
+                    <form action="{{ url_for('main.excluir_lugar', id=lugar.id) }}" method="POST" onsubmit="return confirm('Excluir este local?');" style="margin: 0;">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum ponto turístico encontrado.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Login - Guia Turístico{% endblock %}
+{% block content %}
+    <h2>Login no Sistema de Turismo</h2>
+    {% if mensagem %}
+        <p style="color: green; font-weight: bold;">{{ mensagem }}</p>
+    {% endif %}
+    {% if erro %}
+        <p class="error">{{ erro }}</p>
+    {% endif %}
+    <form method="POST">
+        <p>
+            <label>Usuário:</label><br>
+            <input type="text" name="username" required style="width: 100%; padding: 8px; margin-top: 5px;">
+        </p>
+        <p>
+            <label>Senha:</label><br>
+            <input type="password" name="password" required style="width: 100%; padding: 8px; margin-top: 5px;">
+        </p>
+        <button type="submit" class="btn">Entrar</button>
+    </form>
+    <p style="margin-top: 20px;">
+        Ainda não tem uma conta? <a href="{{ url_for('auth.register') }}">Cadastre-se aqui</a>
+    </p>
+{% endblock %}

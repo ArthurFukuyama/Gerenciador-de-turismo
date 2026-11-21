@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Cadastro - Guia Turístico{% endblock %}
+
+{% block content %}
+    <div style="max-width: 400px; margin: 0 auto;">
+        <h2 style="text-align: center;">📝 Criar Conta</h2>
+        
+        <form method="POST">
+            <label>Nome Completo:</label>
+            <input type="text" name="nome" required placeholder="Ex: João Silva">
+
+            <label>Usuário (Login):</label>
+            <input type="text" name="username" required placeholder="Escolha um usuário">
+
+            <label>Senha:</label>
+            <input type="password" name="password" required placeholder="Crie uma senha">
+
+            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Cadastrar</button>
+        </form>
+
+        <p style="text-align: center; margin-top: 20px;">
+            Já possui conta? <a href="{{ url_for('auth.login') }}">Faça Login</a>
+        </p>
+    </div>
+{% endblock %}

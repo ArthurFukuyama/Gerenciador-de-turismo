@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Cadastrar Lugar - Guia Turístico{% endblock %}
+
+{% block content %}
+    <div style="max-width: 500px; margin: 0 auto;">
+        <h2>📍 Cadastrar Novo Ponto Turístico</h2>
+
+        <form method="POST">
+            <label for="lugar">Cidade / Local:</label>
+            <input type="text" id="lugar" name="lugar" required placeholder="Ex: Rio de Janeiro">
+
+            <label for="monumento">Monumento / Atração:</label>
+            <input type="text" id="monumento" name="monumento" required placeholder="Ex: Cristo Redentor">
+
+            <label for="data_visita">Data da Visita:</label>
+            <input type="date" id="data_visita" name="data_visita" required>
+
+            <label for="categoria_id">Categoria:</label>
+            <select id="categoria_id" name="categoria_id">
+                <option value="">-- Sem Categoria --</option>
+                {% for cat in categorias %}
+                    <option value="{{ cat.id }}">{{ cat.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <div style="margin-top: 20px; display: flex; gap: 10px; align-items: center;">
+                <button type="submit" class="btn">Salvar Lugar</button>
+                <a href="{{ url_for('main.ListaLugares') }}" style="color: var(--text); text-decoration: none; font-weight: 600;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
